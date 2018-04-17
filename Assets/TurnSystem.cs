@@ -22,17 +22,20 @@ namespace Game.Core {
 
 
         [Header("Heroes")]
-        [SerializeField] Hero[] heroes;
-        Hero currentHero;
-        public int CURRENT_HERO_ID
+        [SerializeField] HeroController[] heroes;
+        public HeroController currentHero;
+        public bool IsHeroTurn(int heroID)
         {
-            get {
-                return currentHero ? currentHero.HERO_ID : 0;
-            }
+            if(currentHero)
+                if (currentHero.HERO_ID == heroID)
+                    return true;
+
+            return false;
         }
 
+        public bool turnDone;
+       
         int iter;
-	    
         void Awake()
         {
             if (instance == null)
@@ -78,12 +81,10 @@ namespace Game.Core {
 
            // TurnEnd();
         }
-
-        public void TurnEnd()
+        public IEnumerator BattlePhase()
         {
-            Debug.Log("turnEnd");
-
-            //Handle battle here
+            
+            yield return new WaitForSeconds(1);
 
             //Chose next hero
             if (iter == heroes.Length - 1) iter = 0; else iter++;
@@ -91,6 +92,17 @@ namespace Game.Core {
 
             //Start next turn
             StartCoroutine(TurnStart());
+
+        }
+        public void TurnEnd()
+        {
+            Debug.Log("turnEnd");
+
+            currentHero = null;
+
+            //Handle battle here
+            StartCoroutine(BattlePhase());
+            
         }
 
         void OnDestroy()

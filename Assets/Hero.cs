@@ -1,62 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Gameplay;
+using System;
+using Game.Core;
 
 public class Hero : MonoBehaviour {
-
-    public int HERO_ID;
 
     Deck hand = new Deck();
     Deck deck = new Deck();
 
     public delegate void HeroTurnEnd();
     public static event HeroTurnEnd onHeroEndTurn;
+  
+    HeroController controller;
 
-    public bool active;
-    public bool Active
+    public void Initialize()
     {
-        get
-        {
-            return active;
-        }
+        controller = GetComponent<HeroController>();
 
-        set
-        {
-            active = value;
-        }
-    }
-
-    HeroGUI GUI;
-
-    // Use this for initialization
-    void Start () {
-
-        GUI = GetComponent<HeroGUI>();
-
-        //[TEST]
+        //Add cards to deck for tests
         for (int i = 0; i < 30; i++)
         {
             Card c = new Card();
             deck.AddCard(c);
         }
-
+        //add 10 cards from deck to hand
         for (int i = 0; i < 10; i++)
         {
             var card = deck.GetNextCard();
             hand.AddCard(card);
-            GUI.AddCardToHand(card, HERO_ID);
+            controller.UpdateHeroHand(card);
         }
-        //[TEST END]
+
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
-
-
-    public void StartNewTurn()
+    public void RemoveCardFromHand(string cardID)
     {
-        onHeroEndTurn();//after placed card
+        hand.RemoveCardWithID(cardID);
+        TurnEnd();
+    }
+
+    public void TurnEnd()
+    {
+        onHeroEndTurn();
     }
 }
