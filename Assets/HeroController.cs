@@ -12,6 +12,8 @@ public class HeroController : MonoBehaviour {
     HeroGUI GUI;
     Hero HERO;
 
+    public bool IsHeroActionEnabled;
+    
     //TODO Think about hero as monobehavior 
     void Start()
     {
@@ -21,7 +23,7 @@ public class HeroController : MonoBehaviour {
         HERO.Initialize();
     }
 
-    public void HeroCardPlaced(string cardID)
+    public void HeroCardPlaced(int cardID)
     {
         HERO.RemoveCardFromHand(cardID);
     }
@@ -31,11 +33,24 @@ public class HeroController : MonoBehaviour {
         GUI.AddCardToHand(card, HERO_ID);
     }
 
+    public void ResetUI(){
+        GUI.ResetCards();
+    }
+
     public void StartNewTurn()
     {
         //Check for empty slots on board
         if (GUI.AllCardsPlaced()) HERO.TurnEnd();
+    }
 
+    public void TakeDamage(float damage)
+    {
+        HERO.TakeDamage(damage);
+        GUI.UpdateHeroHealthBar(HERO.HealthInPercentage);
+    }
+
+    public List<DropableArena> GetDroppableAreas() {
+        return GUI.dropableAreas;
     }
 
 }

@@ -8,13 +8,13 @@ namespace UI {
 
         public string Name;
         public CardType Type;
-        public string[] CardsID;
+        public int[] CardsID;
 
-        public Deck(string name, CardType type, string[] cardsID)
+        public Deck(string name, CardType type, int[] cardsID)
         {
             Name = name;
             Type = type;
-            CardsID = new string[cardsID.Length];
+            CardsID = new int[cardsID.Length];
             Array.Copy(cardsID, CardsID, cardsID.Length);
         }
     }

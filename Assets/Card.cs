@@ -2,42 +2,60 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//public enum CardType
+//{
+//    Neutral,
+//    KingdomOfPoland
+//}
+//public enum CardRarity
+//{
+//    Common,
+//    Rare,
+//    Epic,
+//    Legendary
+//}
 public enum CardType
 {
-    Neutral,
-    KingdomOfPoland
-}
-public enum CardRarity
-{
-    Common,
-    Rare,
-    Epic,
-    Legendary
+    Infantry,
+    Archers,
+    Cavalary
 }
 
 
 public struct Card {
 
-    public Card(string id, string name, string imageName, string description, int attackPoints, int defensePoints, CardType type, CardRarity rarity)
+    //public Card(string id, string name, string imageName, string description, int attackPoints, int defensePoints, CardType type, CardRarity rarity)
+    //{
+    //    ID = id;
+    //    Name = name;
+    //    ImageName = imageName;
+    //    Description = description;
+    //    Type = type;
+    //    Rarity = rarity;
+    //    AttackPoints = attackPoints;
+    //    DefensePoints = defensePoints;
+    //}
+
+    public Card(int id, string imageName, int attackPoints, int defensePoints, CardType type, bool vsInf, bool vsArch, bool vsCav)
     {
         ID = id;
-        Name = name;
         ImageName = imageName;
-        Description = description;
         Type = type;
-        Rarity = rarity;
         AttackPoints = attackPoints;
         DefensePoints = defensePoints;
+        VsINF = vsInf;
+        VsCav = vsCav;
+        VsArch = vsArch;
     }
 
-    public string ID;
-    public string Name;
+    public int ID;
     public string ImageName;
-    public string Description;
 
     public int AttackPoints;
     public int DefensePoints;
 
     public CardType Type;
-    public CardRarity Rarity;
+    public bool VsINF;
+    public bool VsArch;
+    public bool VsCav;
 }

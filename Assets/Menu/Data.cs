@@ -33,19 +33,18 @@ public class Data {
 
         for (int i = 0; i < data.Count; i++)
         {
-            var id = data[i]["ID"].ToString();
-            var name = data[i]["Name"].ToString();
+            var id = int.Parse(data[i]["ID"].ToString());
             var imageName = data[i]["ImageName"].ToString();
-            var description = data[i]["Description"].ToString();
             var typeString = data[i]["Type"].ToString();
-            var rarityString = data[i]["Rarity"].ToString();
             var attackPoints = int.Parse(data[i]["AttackPoints"].ToString());
             var defensePoints = int.Parse(data[i]["DefensePoints"].ToString());
+            var vsInf = bool.Parse(data[i]["VsINF"].ToString());
+            var vsArch = bool.Parse(data[i]["VsArch"].ToString());
+            var vsCav = bool.Parse(data[i]["VsCav"].ToString());
 
             var type = Enum.Parse(typeof(CardType), typeString);
-            var rarity = Enum.Parse(typeof(CardRarity), rarityString);
 
-            cards.Add(new Card(id,name,imageName,description,attackPoints,defensePoints,(CardType)type,(CardRarity)rarity));
+            cards.Add(new Card(id,imageName,attackPoints,defensePoints,(CardType)type,vsInf, vsArch, vsCav));
         }
 
         return cards;
@@ -61,11 +60,10 @@ public class Data {
         {
             var name = data[i]["Name"].ToString();
             var typeString = data[i]["Type"].ToString();
-
-            var cardsID = new List<string>();
+            var cardsID = new List<int>();
             var jsonCards = data[i]["CardsID"];
             foreach (var card in jsonCards){
-                cardsID.Add(card.ToString());
+                cardsID.Add(int.Parse(card.ToString()));
             }
 
             var type = Enum.Parse(typeof(CardType), typeString);

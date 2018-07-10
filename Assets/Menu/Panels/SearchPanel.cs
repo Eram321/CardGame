@@ -55,23 +55,23 @@ public class SearchPanel : MonoBehaviour {
     {
         var quote = searchInputField.text;
 
-        foreach (MenuCardUC item in menuCardUCs)
-        {
-            if (!item.ItemCard.Name.StartsWith(quote))
-            {
-                item.gameObject.SetActive(false);
-            }
-            else
-            {
-                item.gameObject.SetActive(true);
-            }
-        }
+        //foreach (MenuCardUC item in menuCardUCs)
+        //{
+        //    if (!item.ItemCard.Name.StartsWith(quote))
+        //    {
+        //        item.gameObject.SetActive(false);
+        //    }
+        //    else
+        //    {
+        //        item.gameObject.SetActive(true);
+        //    }
+        //}
     }
 
     private void MousePointerEnterCard(Card card, Image cardImage)
     {
         cardPreview.SetCardPreview(card, cardImage.sprite);
-        cardDescription.text = "''" + card.Description + "''";
+        //cardDescription.text = "''" + card.Description + "''";
     }
 
     private void CardsDataChange(){

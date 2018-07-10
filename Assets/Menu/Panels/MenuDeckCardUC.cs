@@ -17,13 +17,12 @@ public class MenuDeckCardUC : MonoBehaviour, IPointerEnterHandler, IPointerDownH
 
     public Card card;
 
-    public void SetCardInfo(string cardID)
+    public void SetCardInfo(int cardID)
     {
         //Set current card
         var cards = Data.ReadAllCards();
         foreach (Card c in cards){
             if(c.ID == cardID){
-                cardName.text = c.Name;
                 cardImage.sprite = Resources.Load<Sprite>("Cards/" + c.ImageName);
                 card = c;
                 break;

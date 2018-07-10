@@ -7,6 +7,7 @@ public class NewCardPanel : MonoBehaviour {
 
     //Panel
     [SerializeField] GameObject newCardPanel;
+    [SerializeField] GameObject previewPanel;
 
     //Buttons
     [SerializeField] Button addCardButton;
@@ -34,26 +35,36 @@ public class NewCardPanel : MonoBehaviour {
     public void AddCardButtonClick()
     {
         newCardPanel.SetActive(true);
+        previewPanel.SetActive(false);
         newCardPanel.transform.SetAsLastSibling();
     }
     public void CancelButtonClick(){
         newCardPanel.SetActive(false);
+        previewPanel.SetActive(true);
     }
     public void SubmitButtonClick()
     {
         var id = idInputField.text;
         var name = nameInputField.text;
-        var iName = imageNameInputField.text;
+        var iName = ImageName;/*imageNameInputField.text;*/
         var desc = descriptionInputField.text;
 
         var ap = int.Parse(apInputField.text);
         var df = int.Parse(dfInputField.text);
 
         var type = (CardType)typeDropdownList.value;
-        var rarity = (CardRarity)rarityDropdownList.value;
+        //var rarity = (CardRarity)rarityDropdownList.value;
 
-        Data.AddNewCard(new Card(id, name, iName, desc, ap, df, type, rarity));
+        //Data.AddNewCard(new Card(id, name, iName, desc, ap, df, type, rarity));
 
         CancelButtonClick();
     }
+
+    string ImageName = "piechota";
+    public void SetImageName(int i)
+    {
+        if (i == 5) ImageName = "piechota";
+        else ImageName = i.ToString();
+    }
+
 }

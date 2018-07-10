@@ -67,7 +67,7 @@ public class DeckPanel : MonoBehaviour {
 
     private void SubmitButtonClick()
     {
-        var list = new List<string>();
+        var list = new List<int>();
         foreach (Transform child in editDeckContentParent)
         {
             var deckCard = child.GetComponent<MenuDeckCardUC>();
@@ -107,7 +107,7 @@ public class DeckPanel : MonoBehaviour {
         }
     }
 
-    private void CardMouseClick(string cardID)
+    private void CardMouseClick(int cardID)
     {
         if (!newDeckPanel.activeSelf) return;
         if (editDeckContentParent.childCount >= deckMaxSize) return;
@@ -125,7 +125,7 @@ public class DeckPanel : MonoBehaviour {
         deckPanel.SetActive(false);
 
         if (deck == null) {
-            deck = new UI.Deck("Nowa Talia", CardType.KingdomOfPoland, new string[] { });
+            deck = new UI.Deck("Nowa Talia", CardType.Archers, new int[] { });
             newDeck = true;
         } else
             newDeck = false;
@@ -134,7 +134,7 @@ public class DeckPanel : MonoBehaviour {
 
         nameInputField.text = deck.Name;
 
-        foreach (string cardID in deck.CardsID)
+        foreach (int cardID in deck.CardsID)
         {
             var obj = Instantiate(deckCardsPrefab, editDeckContentParent);
             var c = obj.GetComponent<MenuDeckCardUC>();

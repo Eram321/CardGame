@@ -7,6 +7,9 @@ using Game.Core;
 
 public class Hero : MonoBehaviour {
 
+    [SerializeField] float heroMaxHealth;
+    float currentHeroHealth;
+
     Deck hand = new Deck();
     Deck deck = new Deck();
 
@@ -15,27 +18,35 @@ public class Hero : MonoBehaviour {
   
     HeroController controller;
 
+    public float HealthInPercentage
+    {
+        get {
+            return currentHeroHealth/heroMaxHealth;
+        }
+    }
+
     public void Initialize()
     {
         controller = GetComponent<HeroController>();
+        currentHeroHealth = heroMaxHealth;
 
-        //Add cards to deck for tests
-        for (int i = 0; i < 30; i++)
-        {
-            Card c = new Card();
-            deck.AddCard(c);
+        //Add cards to deck for tests 2xCard
+        var cards = Data.ReadAllCards();
+        for (int i = 0; i < cards.Count; i++) { 
+            deck.AddCard(cards[i]);
+            deck.AddCard(cards[i]);
         }
-        //add 10 cards from deck to hand
-        for (int i = 0; i < 10; i++)
+
+        //Add 15 cards from deck to hand
+        for (int i = 0; i < 15; i++)
         {
             var card = deck.GetNextCard();
             hand.AddCard(card);
             controller.UpdateHeroHand(card);
         }
-
     }
 
-    public void RemoveCardFromHand(string cardID)
+    public void RemoveCardFromHand(int cardID)
     {
         hand.RemoveCardWithID(cardID);
         TurnEnd();
@@ -45,4 +56,11 @@ public class Hero : MonoBehaviour {
     {
         onHeroEndTurn();
     }
+
+    public void TakeDamage(float damage)
+    {
+        currentHeroHealth -= damage;
+        //if 0 dieeee
+    }
+
 }

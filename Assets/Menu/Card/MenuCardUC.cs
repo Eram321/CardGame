@@ -17,7 +17,7 @@ public class MenuCardUC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public delegate void OnMouseEnter(Card card, Image cardImage);
     public static event OnMouseEnter onMouseEnter;
 
-    public delegate void OnMouseClick(string cardID);
+    public delegate void OnMouseClick(int cardID);
     public static event OnMouseClick onMouseClick;
 
     Card card;
@@ -36,7 +36,6 @@ public class MenuCardUC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void SetCardPreview(Card card, Sprite sprite)
     {
         cardImage.sprite = sprite;
-        cardName.text = card.Name;
         cardAPText.text = card.AttackPoints.ToString();
         cardDFText.text = card.DefensePoints.ToString();
     }

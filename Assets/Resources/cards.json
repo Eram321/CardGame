@@ -1,1 +1,93 @@
-[{"ID":"IN_01","Name":"Piechota","ImageName":"piechota","Description":"Zwykla pospolita piechota","AttackPoints":10,"DefensePoints":12,"Type":0,"Rarity":0},{"ID":"PK_01","Name":"Pikinierzy","ImageName":"piechota","Description":"Pikinierzy","AttackPoints":22,"DefensePoints":15,"Type":0,"Rarity":0},{"ID":"IN_02","Name":"Piechota","ImageName":"piechota","Description":"Zwykla pospolita piechota2","AttackPoints":10,"DefensePoints":12,"Type":0,"Rarity":0},{"ID":"CA_01","Name":"Kawaleria","ImageName":"piechota","Description":"Lekka kawaleria","AttackPoints":15,"DefensePoints":25,"Type":0,"Rarity":0},{"ID":"SH_01","Name":"Tarczownicy","ImageName":"piechota","Description":"Tarczowniczy z tarczami","AttackPoints":5,"DefensePoints":35,"Type":0,"Rarity":0},{"ID":"HE_01","Name":"Zawisza Czarny","ImageName":"piechota","Description":"Jak by nie patrzec rycerz","AttackPoints":25,"DefensePoints":25,"Type":1,"Rarity":3}]
+[  
+   {  
+      "ID":0,
+      "ImageName":"karta_rycerza",
+      "Type":0,
+      "AttackPoints":4,
+      "DefensePoints":8,
+      "VsINF": false,
+      "VsArch":true,
+      "VsCav":false
+   },
+   {  
+      "ID":1,
+      "ImageName":"karta_lucznika",
+      "Type":1,
+      "AttackPoints":6,
+      "DefensePoints":4,
+      "VsINF": true,
+      "VsArch":false,
+      "VsCav":false
+   },
+   {  
+      "ID":2,
+      "ImageName":"karta_kawaleria",
+      "Type":2,
+      "AttackPoints":6,
+      "DefensePoints":6,
+      "VsINF": true,
+      "VsArch":false,
+      "VsCav":true
+   },
+   {  
+      "ID":0,
+      "ImageName":"karta_rycerza",
+      "Type":0,
+      "AttackPoints":4,
+      "DefensePoints":8,
+      "VsINF": false,
+      "VsArch":true,
+      "VsCav":false
+   },
+   {  
+      "ID":1,
+      "ImageName":"karta_lucznika",
+      "Type":1,
+      "AttackPoints":6,
+      "DefensePoints":4,
+      "VsINF": true,
+      "VsArch":false,
+      "VsCav":false
+   },
+   {  
+      "ID":2,
+      "ImageName":"karta_kawaleria",
+      "Type":2,
+      "AttackPoints":6,
+      "DefensePoints":6,
+      "VsINF": true,
+      "VsArch":false,
+      "VsCav":true
+   },
+   {  
+      "ID":0,
+      "ImageName":"karta_rycerza",
+      "Type":0,
+      "AttackPoints":4,
+      "DefensePoints":8,
+      "VsINF": false,
+      "VsArch":true,
+      "VsCav":false
+   },
+   {  
+      "ID":1,
+      "ImageName":"karta_lucznika",
+      "Type":1,
+      "AttackPoints":6,
+      "DefensePoints":4,
+      "VsINF": true,
+      "VsArch":false,
+      "VsCav":false
+   },
+   {  
+      "ID":2,
+      "ImageName":"karta_kawaleria",
+      "Type":2,
+      "AttackPoints":6,
+      "DefensePoints":6,
+      "VsINF": true,
+      "VsArch":false,
+      "VsCav":true
+   }
+
+]
