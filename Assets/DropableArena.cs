@@ -1,5 +1,4 @@
-﻿using Game.Core;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -21,14 +20,14 @@ public class DropableArena : MonoBehaviour, IDropHandler{
         DraggableCard.IsDragging = false;
 
         if (!dc.CanBeMoved) return;
-        if (dc != null && dc.HERO_CARD_ID == HERO_ARENA_ID && TurnSystem.Instance.IsHeroTurn(dc.HERO_CARD_ID))
-        {
-            if(transform.childCount < maxCardCount) { 
-                dc.ParentToReturn = this.transform;
-                dc.transform.localScale = new Vector2(0.7f, 0.7f);
-                dc.IsPlaced = true;
-                dc.CardPlaced();
-            }
-        }
+        //if (dc != null && dc.HERO_CARD_ID == HERO_ARENA_ID && TurnSystem.Instance.IsHeroTurn(dc.HERO_CARD_ID))
+        //{
+        //    if(transform.childCount < maxCardCount) { 
+        //        dc.ParentToReturn = this.transform;
+        //        dc.transform.localScale = new Vector2(1f, 1f);
+        //        dc.IsPlaced = true;
+        //        dc.CardPlaced();
+        //    }
+        //}
     }
 }

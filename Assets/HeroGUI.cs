@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Game.Core;
 using UnityEngine.UI;
 
 public class HeroGUI : MonoBehaviour {
@@ -37,15 +36,15 @@ public class HeroGUI : MonoBehaviour {
 
     public void CardPlaced(int cardID)
     {
-        if (TurnSystem.Instance.IsHeroTurn(controller.HERO_ID)) {
-            controller.HeroCardPlaced(cardID);
-        }
+        //if (TurnSystem.Instance.IsHeroTurn(controller.HERO_ID)) {
+        //    controller.HeroCardPlaced(cardID);
+        //}
     }
 
     public void ResetCards()
     {
         foreach (Transform child in handParent.transform){
-            child.localScale = new Vector2(0.75f, 0.75f);
+            child.localScale = new Vector2(1f, 1f);
         }
     }
 

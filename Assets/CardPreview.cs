@@ -13,8 +13,8 @@ public class CardPreview : MonoBehaviour {
     {
         gameObject.SetActive(true);
         cardPreviewImage.sprite = cardSprite;
-        cardPreviewApText.text = card.AttackPoints.ToString();
-        cardPreviewDefText.text = card.DefensePoints.ToString();
+        //cardPreviewApText.text = card.AttackPoints.ToString();
+        //cardPreviewDefText.text = card.DefensePoints.ToString();
     }
     public void ToggleCardPreview(bool enabled)
     {

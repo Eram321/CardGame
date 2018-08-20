@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 namespace Gameplay { 
-    public class Deck : MonoBehaviour {
+    public class Deck {
 
         List<Card> cards = new List<Card>();
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using Game.Core;
 using System;
 
 public class DraggableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDragHandler, IEndDragHandler, IBeginDragHandler
@@ -19,8 +18,8 @@ public class DraggableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         get { return card; }
         set {
             card = value;
-            apText.text = card.AttackPoints.ToString();
-            dfText.text = card.DefensePoints.ToString();
+            //apText.text = card.AttackPoints.ToString();
+            //dfText.text = card.DefensePoints.ToString();
             cardImage.sprite = Resources.Load<Sprite>("Cards/" + card.ImageName);
         }
     }
@@ -39,8 +38,13 @@ public class DraggableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     CardPreview cardPreview;
     float offset = 25;
     Vector2 startPos;
+    RectTransform rect;
+    Camera cam;
+
     void Start() {
         cardPreview = FindObjectOfType<CardPreview>();
+        rect = GetComponent<RectTransform>();
+        cam = Camera.main;
         StartCoroutine(SetStartPositionAfterLayout());
     }
 
@@ -81,14 +85,17 @@ public class DraggableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         ParentToReturn = transform.parent;
 
         transform.SetParent(transform.root);
-        transform.localScale = new Vector2(0.75f, 0.75f);
+        transform.localScale = new Vector2(1f, 1f);
         GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
+    
     public void OnDrag(PointerEventData eventData)
     {
         if (!CanBeMoved) return;
 
-        transform.position = eventData.position;
+        var pos = new Vector3();
+        RectTransformUtility.ScreenPointToWorldPointInRectangle(rect, eventData.position, cam, out pos);
+        transform.position = pos;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -104,10 +111,11 @@ public class DraggableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private bool IsCardActive()
     {
-        return TurnSystem.Instance.IsHeroTurn(HERO_CARD_ID)
-            && !IsPlaced
-            && !IsDragging
-            && TurnSystem.Instance.currentHero.IsHeroActionEnabled;
+        return false;
+        //return TurnSystem.Instance.IsHeroTurn(HERO_CARD_ID)
+        //    && !IsPlaced
+        //    && !IsDragging
+        //    && TurnSystem.Instance.currentHero.IsHeroActionEnabled;
     }
 
     public void CardPlaced() {
@@ -126,9 +134,9 @@ public class DraggableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void TakeDamage(int damage)
     {
-        card.DefensePoints -= damage;
-        if (card.DefensePoints <= 0) Destroy(this.gameObject);
-        dfText.text = card.DefensePoints.ToString();
+        //card.DefensePoints -= damage;
+        //if (card.DefensePoints <= 0) Destroy(this.gameObject);
+        //dfText.text = card.DefensePoints.ToString();
     }
 
     public IEnumerator StartAttack(DraggableCard opponentCard)
@@ -147,13 +155,13 @@ public class DraggableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             yield return new WaitForEndOfFrame();
         }
 
-        var damage = Card.AttackPoints;
-        if (Card.VsINF && opponentCard.card.Type == CardType.Infantry
-           || Card.VsArch && opponentCard.card.Type == CardType.Archers
-           || Card.VsCav && opponentCard.card.Type == CardType.Cavalary)
-            damage += (int)(damage * 0.5);
+        //var damage = Card.AttackPoints;
+        //if (Card.VsINF && opponentCard.card.Type == CardType.Infantry
+        //   || Card.VsArch && opponentCard.card.Type == CardType.Archers
+        //   || Card.VsCav && opponentCard.card.Type == CardType.Cavalary)
+            //damage += (int)(damage * 0.5);
 
-        opponentCard.TakeDamage(damage);
+        //opponentCard.TakeDamage(damage);
         transform.localPosition = Vector3.zero;
     }
 
@@ -173,7 +181,7 @@ public class DraggableCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             yield return new WaitForEndOfFrame();
         }
 
-        heroController.TakeDamage(Card.AttackPoints);
+        //heroController.TakeDamage(Card.AttackPoints);
         transform.localPosition = Vector3.zero;
     }
 }

@@ -34,17 +34,14 @@ public class Data {
         for (int i = 0; i < data.Count; i++)
         {
             var id = int.Parse(data[i]["ID"].ToString());
+            var name = data[i]["Name"].ToString();
             var imageName = data[i]["ImageName"].ToString();
-            var typeString = data[i]["Type"].ToString();
-            var attackPoints = int.Parse(data[i]["AttackPoints"].ToString());
-            var defensePoints = int.Parse(data[i]["DefensePoints"].ToString());
-            var vsInf = bool.Parse(data[i]["VsINF"].ToString());
-            var vsArch = bool.Parse(data[i]["VsArch"].ToString());
-            var vsCav = bool.Parse(data[i]["VsCav"].ToString());
+            var attack = int.Parse(data[i]["Attack"].ToString());
+            var defense = int.Parse(data[i]["Defense"].ToString());
+            var range = int.Parse(data[i]["Range"].ToString());
+            var speed = int.Parse(data[i]["Speed"].ToString());
 
-            var type = Enum.Parse(typeof(CardType), typeString);
-
-            cards.Add(new Card(id,imageName,attackPoints,defensePoints,(CardType)type,vsInf, vsArch, vsCav));
+            cards.Add(new Card(id,name, imageName, attack, defense, range, speed));
         }
 
         return cards;

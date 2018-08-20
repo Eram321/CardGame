@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Gameplay;
 using System;
-using Game.Core;
-
 public class Hero : MonoBehaviour {
 
     [SerializeField] float heroMaxHealth;

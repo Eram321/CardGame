@@ -36,26 +36,22 @@ public struct Card {
     //    DefensePoints = defensePoints;
     //}
 
-    public Card(int id, string imageName, int attackPoints, int defensePoints, CardType type, bool vsInf, bool vsArch, bool vsCav)
+    public Card(int id, string name, string imageName, int attack, int defense, int range, int speed)
     {
-        ID = id;
-        ImageName = imageName;
-        Type = type;
-        AttackPoints = attackPoints;
-        DefensePoints = defensePoints;
-        VsINF = vsInf;
-        VsCav = vsCav;
-        VsArch = vsArch;
+        this.ID = id;
+        this.Name = name;
+        this.ImageName = imageName;
+        this.Attack = attack;
+        this.Defense = defense;
+        this.Range = range;
+        this.Speed = speed;
     }
 
     public int ID;
     public string ImageName;
-
-    public int AttackPoints;
-    public int DefensePoints;
-
-    public CardType Type;
-    public bool VsINF;
-    public bool VsArch;
-    public bool VsCav;
+    public string Name;
+    public int Attack;
+    public int Defense;
+    public int Range;
+    public int Speed;
 }

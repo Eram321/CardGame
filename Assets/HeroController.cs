@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Gameplay;
 using UnityEngine;
-using Game.Core;
 
 public class HeroController : MonoBehaviour {
 

@@ -36,8 +36,8 @@ public class MenuCardUC : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void SetCardPreview(Card card, Sprite sprite)
     {
         cardImage.sprite = sprite;
-        cardAPText.text = card.AttackPoints.ToString();
-        cardDFText.text = card.DefensePoints.ToString();
+        //cardAPText.text = card.AttackPoints.ToString();
+        //cardDFText.text = card.DefensePoints.ToString();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

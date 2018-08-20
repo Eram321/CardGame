@@ -1,93 +1,110 @@
-[  
-   {  
-      "ID":0,
-      "ImageName":"karta_rycerza",
-      "Type":0,
-      "AttackPoints":4,
-      "DefensePoints":8,
-      "VsINF": false,
-      "VsArch":true,
-      "VsCav":false
-   },
-   {  
-      "ID":1,
-      "ImageName":"karta_lucznika",
-      "Type":1,
-      "AttackPoints":6,
-      "DefensePoints":4,
-      "VsINF": true,
-      "VsArch":false,
-      "VsCav":false
-   },
-   {  
-      "ID":2,
-      "ImageName":"karta_kawaleria",
-      "Type":2,
-      "AttackPoints":6,
-      "DefensePoints":6,
-      "VsINF": true,
-      "VsArch":false,
-      "VsCav":true
-   },
-   {  
-      "ID":0,
-      "ImageName":"karta_rycerza",
-      "Type":0,
-      "AttackPoints":4,
-      "DefensePoints":8,
-      "VsINF": false,
-      "VsArch":true,
-      "VsCav":false
-   },
-   {  
-      "ID":1,
-      "ImageName":"karta_lucznika",
-      "Type":1,
-      "AttackPoints":6,
-      "DefensePoints":4,
-      "VsINF": true,
-      "VsArch":false,
-      "VsCav":false
-   },
-   {  
-      "ID":2,
-      "ImageName":"karta_kawaleria",
-      "Type":2,
-      "AttackPoints":6,
-      "DefensePoints":6,
-      "VsINF": true,
-      "VsArch":false,
-      "VsCav":true
-   },
-   {  
-      "ID":0,
-      "ImageName":"karta_rycerza",
-      "Type":0,
-      "AttackPoints":4,
-      "DefensePoints":8,
-      "VsINF": false,
-      "VsArch":true,
-      "VsCav":false
-   },
-   {  
-      "ID":1,
-      "ImageName":"karta_lucznika",
-      "Type":1,
-      "AttackPoints":6,
-      "DefensePoints":4,
-      "VsINF": true,
-      "VsArch":false,
-      "VsCav":false
-   },
-   {  
-      "ID":2,
-      "ImageName":"karta_kawaleria",
-      "Type":2,
-      "AttackPoints":6,
-      "DefensePoints":6,
-      "VsINF": true,
-      "VsArch":false,
-      "VsCav":true
-   }
-
+[
+  {
+    "ID": 0,
+    "Name": "Farmer",
+    "ImageName": "farmer",
+    "Attack": 4,
+    "Defense": 8,
+    "Range": 1,
+    "Speed": 3
+  },
+  {
+    "ID": 1,
+    "Name": "Townsman",
+    "ImageName": "townsman",
+    "Attack": 4,
+    "Defense": 8,
+    "Range": 2,
+    "Speed": 2
+  },
+  {
+    "ID": 0,
+    "Name": "Farmer",
+    "ImageName": "farmer",
+    "Attack": 4,
+    "Defense": 8,
+    "Range": 1,
+    "Speed": 3
+  },
+  {
+    "ID": 1,
+    "Name": "Townsman",
+    "ImageName": "townsman",
+    "Attack": 4,
+    "Defense": 8,
+    "Range": 2,
+    "Speed": 2
+  },
+  {
+    "ID": 0,
+    "Name": "Farmer",
+    "ImageName": "farmer",
+    "Attack": 4,
+    "Defense": 8,
+    "Range": 1,
+    "Speed": 3
+  },
+  {
+    "ID": 1,
+    "Name": "Townsman",
+    "ImageName": "townsman",
+    "Attack": 4,
+    "Defense": 8,
+    "Range": 2,
+    "Speed": 2
+  },
+  {
+    "ID": 0,
+    "Name": "Farmer",
+    "ImageName": "farmer",
+    "Attack": 4,
+    "Defense": 8,
+    "Range": 1,
+    "Speed": 3
+  },
+  {
+    "ID": 1,
+    "Name": "Townsman",
+    "ImageName": "townsman",
+    "Attack": 4,
+    "Defense": 8,
+    "Range": 2,
+    "Speed": 2
+  },
+  {
+    "ID": 0,
+    "Name": "Farmer",
+    "ImageName": "farmer",
+    "Attack": 4,
+    "Defense": 8,
+    "Range": 1,
+    "Speed": 3
+  },
+  {
+    "ID": 1,
+    "Name": "Townsman",
+    "ImageName": "townsman",
+    "Attack": 4,
+    "Defense": 8,
+    "Range": 2,
+    "Speed": 2
+  },
+  {
+    "ID": 0,
+    "Name": "Farmer",
+    "ImageName": "farmer",
+    "Attack": 4,
+    "Defense": 8,
+    "Range": 1,
+    "Speed": 3
+  },
+  {
+    "ID": 1,
+    "Name": "Townsman",
+    "ImageName": "townsman",
+    "Attack": 4,
+    "Defense": 8,
+    "Range": 2,
+    "Speed": 2
+  }
 ]
