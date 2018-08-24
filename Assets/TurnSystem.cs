@@ -75,23 +75,22 @@ public class TurnSystem : MonoBehaviour {
         currentPlayer.IsPlayerTurn = true;
     }
 
-    bool endTurn;
-    public void EndTurn(){endTurn = true;}
-
+    public bool endTurn;
+    public void EndTurn() { GameManager.TurnSystem.endTurn = true; }
     private IEnumerator TurnStart()
     {
         //Take card from deck
-        yield return new WaitForSeconds(turnStartDelay);
+        yield return StartCoroutine(currentPlayer.StartTurn());
 
         Debug.Log(currentPlayer + " :TURN");
         endTurn = false;
 
         var t = 0f;
-        while (!endTurn)
-        {
-            t += 0.1f;
+        while (!endTurn) { 
+            GameManager.GameUI.SetTurnTime(turnTime - t);
+            yield return new WaitForSeconds(1f);
+            t += 1f;
             if (t > turnTime) endTurn = true;
-            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -131,7 +130,7 @@ public class TurnSystem : MonoBehaviour {
         var units = players[0].GetUnits();
         var enemyUnits = players[1].GetUnits();
 
-        for (int i = places.Count-2; i >= 0; i--)
+        for (int i = places.Count-1; i >= 0; i--)
         {
             //check if is unit on place
             if (places[i].unit)
@@ -161,7 +160,10 @@ public class TurnSystem : MonoBehaviour {
                             {
                                 if (!units.Contains(places[x].unit))
                                 {
-                                    //Damage enemy unit
+                                    //Play attack anim
+                                    yield return StartCoroutine(u.PlayAttackAnimation(false));
+                                    
+                                    //Damage enemy unit if anim completed
                                     var destroyed = places[x].unit.CalculateDamage(places[currentPos].unit);
                                     if (destroyed)
                                     {
@@ -176,11 +178,22 @@ public class TurnSystem : MonoBehaviour {
                         }
                         if (actionDone) break;
 
+                        //Attack commander?
+                        if(u.Card.Range+1 > maxAttackRange)
+                        {
+                            //Play attack anim
+                            yield return StartCoroutine(u.PlayAttackAnimation(false));
+                            
+                            //Attack commander
+                            players[1].AttackCommander(u.Card.Attack);
+                            break;
+                        }
+
                         //If place is empty Move 
-                        if (!(places[currentPos + 1].unit))
+                        if (!(places[currentPos + 1].unit) && currentPos+1 != places.Count-1)
                         {
                             //Move one place forward
-                            places[currentPos + 1].MoveUnit(u);
+                            yield return StartCoroutine(places[currentPos + 1].MoveUnit(u, false));
                             //Clear current Place
                             places[currentPos].unit = null;
                             currentPos++;
@@ -188,10 +201,7 @@ public class TurnSystem : MonoBehaviour {
                         else // if way is blocked break
                             break;
 
-                        //Move animation
-                        yield return new WaitForSeconds(0.5f);
                     }
-
                     i = currentPos;
                 }
             }
@@ -220,7 +230,7 @@ public class TurnSystem : MonoBehaviour {
 
                     //Movement range
                     var moveRange = 0;
-                    var maxMoveRange = i-1;
+                    var maxMoveRange = i;
                     if (u.Card.Speed > maxMoveRange) moveRange = maxMoveRange; else moveRange = u.Card.Speed;
                     var currentPos = i;
 
@@ -229,15 +239,18 @@ public class TurnSystem : MonoBehaviour {
                     {
                         //Is enemy in range
                         var attackRange = 0;
-                        var maxAttackRange = i-1;
+                        var maxAttackRange = i;
                         if (u.Card.Range > maxAttackRange) attackRange = maxAttackRange; else attackRange = u.Card.Range;
-                        for (int x = currentPos - 1; x >= currentPos+attackRange; x--)
+                        for (int x = currentPos - 1; x >= currentPos-attackRange; x--)
                         {
                             if (places[x].unit)
                             {
                                 if (!units.Contains(places[x].unit))
                                 {
-                                    //Damage enemy unit
+                                    //Play attack anim
+                                    yield return StartCoroutine(u.PlayAttackAnimation(true));
+
+                                    //Damage enemy unit if anim completed
                                     var destroyed = places[x].unit.CalculateDamage(places[currentPos].unit);
                                     if (destroyed)
                                     {
@@ -253,11 +266,23 @@ public class TurnSystem : MonoBehaviour {
                         }
                         if (actionDone) break;
 
+                        //Attack commander?
+                        if (u.Card.Range+1 > maxAttackRange)
+                        {
+                            //Play attack anim
+                            yield return StartCoroutine(u.PlayAttackAnimation(true));
+
+                            //Attack commander
+                            players[0].AttackCommander(u.Card.Attack);
+                            break;
+                        }
+
                         //If place is empty Move 
-                        if (!(places[currentPos - 1].unit))
+                        if (!(places[currentPos - 1].unit) && currentPos-1 != 0)
                         {
                             //Move one place forward
-                            places[currentPos - 1].MoveUnit(u);
+                            yield return StartCoroutine(places[currentPos - 1].MoveUnit(u, true));
+
                             //Clear current Place
                             places[currentPos].unit = null;
                             currentPos--;
@@ -265,8 +290,6 @@ public class TurnSystem : MonoBehaviour {
                         else // if way is blocked break
                             break;
 
-                        //Move animation
-                        yield return new WaitForSeconds(0.5f);
                     }
 
                     i = currentPos;

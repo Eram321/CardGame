@@ -18,7 +18,7 @@ public class MenuDeckUC : MonoBehaviour,IPointerDownHandler {
         get { return deck; }
         set {
             deck = value;
-            deckNameLabel.text = deck.Name;
+    
         }
     }
 
@@ -29,6 +29,6 @@ public class MenuDeckUC : MonoBehaviour,IPointerDownHandler {
 
     public void UpdateDeckName()
     {
-        deckNameLabel.text = deck.Name;
+
     }
 }

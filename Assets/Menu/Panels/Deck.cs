@@ -6,14 +6,10 @@ using UnityEngine;
 namespace UI { 
     public class Deck {
 
-        public string Name;
-        public CardType Type;
         public int[] CardsID;
 
-        public Deck(string name, CardType type, int[] cardsID)
+        public Deck(int[] cardsID)
         {
-            Name = name;
-            Type = type;
             CardsID = new int[cardsID.Length];
             Array.Copy(cardsID, CardsID, cardsID.Length);
         }

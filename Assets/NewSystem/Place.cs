@@ -31,11 +31,23 @@ public class Place : MonoBehaviour {
     }
     public void Disable()
     {
-        GetComponent<SpriteRenderer>().color = Color.gray;
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 
-    public void MoveUnit(Unit unit)
+    public IEnumerator MoveUnit(Unit unit, bool flip)
     {
+        var speed = 2;
+        unit.transform.SetParent(null);
+        var dist = Vector3.Distance(unit.transform.position, transform.position);
+        while(dist > 0.1f)
+        {
+            unit.ToggleWalkAnimation(true, flip);
+            dist = Vector3.Distance(unit.transform.position, transform.position);
+            unit.transform.position = Vector3.MoveTowards(unit.transform.position, transform.position, Time.deltaTime*speed);
+            yield return new WaitForEndOfFrame();
+        }
+
+        unit.ToggleWalkAnimation(false, flip);
         this.unit = unit;
         unit.transform.SetParent(transform);
         unit.transform.position = transform.position;

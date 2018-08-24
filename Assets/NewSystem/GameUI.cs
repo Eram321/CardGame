@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour {
 
     [SerializeField] CardObjectPreview cardPreviewPanel;
+    [SerializeField] Text turnTimeText;
 
     void Awake()
     {
@@ -40,5 +42,10 @@ public class GameUI : MonoBehaviour {
     public void ResetUI()
     {
         DisableCardPreview();
+    }
+
+    public void SetTurnTime(float value)
+    {
+        turnTimeText.text = value.ToString();
     }
 }

@@ -74,7 +74,7 @@ public class DeckPanel : MonoBehaviour {
             list.Add(deckCard.card.ID);
         }
 
-        currentDeck.Name = nameInputField.text;
+
         currentDeck.CardsID = list.ToArray();
 
         if (newDeck)
@@ -125,14 +125,14 @@ public class DeckPanel : MonoBehaviour {
         deckPanel.SetActive(false);
 
         if (deck == null) {
-            deck = new UI.Deck("Nowa Talia", CardType.Archers, new int[] { });
+            //deck = new UI.Deck("Nowa Talia", CardType.Archers, new int[] { });
             newDeck = true;
         } else
             newDeck = false;
 
         currentDeck = deck;
 
-        nameInputField.text = deck.Name;
+
 
         foreach (int cardID in deck.CardsID)
         {

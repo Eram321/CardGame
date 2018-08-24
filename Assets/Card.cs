@@ -36,7 +36,7 @@ public struct Card {
     //    DefensePoints = defensePoints;
     //}
 
-    public Card(int id, string name, string imageName, int attack, int defense, int range, int speed)
+    public Card(int id, string name, string imageName, int attack, int defense, int range, int speed, int turns)
     {
         this.ID = id;
         this.Name = name;
@@ -45,6 +45,7 @@ public struct Card {
         this.Defense = defense;
         this.Range = range;
         this.Speed = speed;
+        this.Turns = turns;
     }
 
     public int ID;
@@ -54,4 +55,5 @@ public struct Card {
     public int Defense;
     public int Range;
     public int Speed;
+    public int Turns;
 }

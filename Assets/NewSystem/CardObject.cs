@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class CardObject : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
+
+    [SerializeField] Text enableTurnsText;
+
     public Image cardImage;
 
     private Card card;
@@ -15,7 +18,9 @@ public class CardObject : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         set {
             card = value;
             //update interface depends on card
-            cardImage.sprite = Resources.Load<Sprite>("Cards/" + card.ImageName + "_card");
+            if (cardImage) cardImage.sprite = Resources.Load<Sprite>(string.Format("Cards/{0}/{1}_card", card.ImageName, card.ImageName));
+            EnableTurns = card.Turns;
+            
         }
     }
 
@@ -24,9 +29,31 @@ public class CardObject : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     public delegate void SelectCard(CardObject card);
     public static event SelectCard OnSelectCard;
 
+    public void DecTurns(){
+
+        if (enable) return;
+        EnableTurns--;
+
+    }
+    int enableTurns;
+    public int EnableTurns
+    {
+        get { return enableTurns; }
+        set {
+            enableTurns = value;
+            if (enableTurnsText) enableTurnsText.text = enableTurns.ToString();
+            if (enableTurns == 0)
+            {
+                enable = true;
+                if (enableTurnsText) enableTurnsText.gameObject.SetActive(false);
+            }
+        }
+    }
+    bool enable = false;
+
     public void OnPointerClick(PointerEventData eventData){
 
-        if (Interactable)
+        if (Interactable && enable)
         {
             EnableCard();
             OnSelectCard(this);
@@ -34,27 +61,26 @@ public class CardObject : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     }
     public void DisableCard()
     {
-        GetComponent<Image>().color = Color.gray;
-        GameManager.GameUI.DisableCardPreview();
+        var image = GetComponent<Image>();
+        if (image) { 
+            image.color = new Color(0.1f, 0.1f, 0.1f, 0.1f);
+            GameManager.GameUI.DisableCardPreview();
+        }
     }
     public void EnableCard()
     {
-        GetComponent<Image>().color = Color.green;
+        var image = GetComponent<Image>();
+        if (image)
+            GetComponent<Image>().color = Color.green;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (Interactable)
-        {
-            GameManager.GameUI.SetCardPreview(this);
-        }
+        GameManager.GameUI.SetCardPreview(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (Interactable)
-        {
-            GameManager.GameUI.DisableCardPreview();
-        }
+        GameManager.GameUI.DisableCardPreview();
     }
 }

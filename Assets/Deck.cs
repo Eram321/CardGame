@@ -8,6 +8,7 @@ namespace Gameplay {
 
         List<Card> cards = new List<Card>();
 
+        public Card CardAt(int idx) { return cards[idx]; } 
         public int DeckSize
         {
             get {

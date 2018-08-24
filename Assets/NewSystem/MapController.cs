@@ -11,7 +11,9 @@ public class MapController : MonoBehaviour {
     [Header("Map Parameters")]
     [SerializeField] int Lines;
     [SerializeField] int PlacesInLine;
-    [SerializeField] float offsetBetwenPlaces = 1f;
+    [SerializeField] float offsetBetwenPlacesY = 1f;
+
+    [SerializeField] GameObject mapHolder;
 
     List<Line> lines = new List<Line>();
 
@@ -30,7 +32,7 @@ public class MapController : MonoBehaviour {
     private void GenerateMap()
     {
         //Create map 
-        var mapHolder = new GameObject("MapHolder");
+        var size = new Vector2();
         for (int i = 0; i < Lines; i++)
         {
             //Create line 
@@ -39,12 +41,12 @@ public class MapController : MonoBehaviour {
             var line = lineHolder.AddComponent<Line>();
             lines.Add(line);
 
-            var size = new Vector2();
             for (int j = 0; j < PlacesInLine; j++)
             {
                 var placeObject = Instantiate(PlacePrefab, lineHolder.transform);
-                size = placeObject.GetComponent<BoxCollider2D>().bounds.extents;
-                placeObject.transform.position = new Vector3(j * size.x + offsetBetwenPlaces * j * size.x, 0);
+                size = placeObject.GetComponent<BoxCollider2D>().bounds.extents * 2f;
+
+                placeObject.transform.localPosition = new Vector3(j*size.x, 0, i);
                 var place = placeObject.GetComponent<Place>();
 
                 if (j == 0)
@@ -55,10 +57,8 @@ public class MapController : MonoBehaviour {
                 line.AddPlace(place);
             }
 
-            lineHolder.transform.position = new Vector3(0,i*size.y + offsetBetwenPlaces*i*size.y);
+            lineHolder.transform.localPosition = new Vector3(0,i*size.y + offsetBetwenPlacesY*i*size.y);
         }
-
-        mapHolder.transform.position = new Vector3((-PlacesInLine+1)/offsetBetwenPlaces, (-Lines + 1) / offsetBetwenPlaces);
     }
 
     private void PlaceForPlayer(PlayerController player, Place place)
