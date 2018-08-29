@@ -62,8 +62,8 @@ public class CardObject : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     public void DisableCard()
     {
         var image = GetComponent<Image>();
-        if (image) { 
-            image.color = new Color(0.1f, 0.1f, 0.1f, 0.1f);
+        if (image) {
+            image.color = new Color(0, 0, 0, 0);
             GameManager.GameUI.DisableCardPreview();
         }
     }
@@ -71,7 +71,7 @@ public class CardObject : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     {
         var image = GetComponent<Image>();
         if (image)
-            GetComponent<Image>().color = Color.green;
+            GetComponent<Image>().color = new Color(0.45f, 0.53f, 0.09f, 1f);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

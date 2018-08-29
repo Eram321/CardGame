@@ -35,6 +35,7 @@ public class Unit : MonoBehaviour {
 
     public bool CalculateDamage(Unit unit)
     {
+        //instenije szansa ze karta nam zginie
         CreateHitEffect(unit.card.Attack);
 
         card.Defense -= unit.Card.Attack;

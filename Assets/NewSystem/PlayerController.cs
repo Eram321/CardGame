@@ -22,8 +22,11 @@ public class PlayerController : MonoBehaviour
     public Deck hand = new Deck();
     Deck deck = new Deck();
 
+    //Controllers
+    UnitsController unitsController;
+
     //Player Commander
-    [SerializeField] Commander commander;
+    public Commander commander;
     [SerializeField] int playerDeckNumber = 0;
 
     //Units dropped on map
@@ -56,10 +59,16 @@ public class PlayerController : MonoBehaviour
 
     bool firstRound = true;
 
+    public UI.Deck CommanderCards;
+
     private void Start()
     {
         cam = Camera.main;
         PlayerUI = GetComponent<PlayerUIController>();
+        unitsController = GetComponent<UnitsController>();
+
+        if (playerDeckNumber == 0) CommanderCards = Game.Instance.PlayerData.PlayerDeck;
+        else CommanderCards = Data.ReadDeckWithID(Game.Instance.CurrentEnemyDeck);
     }
 
     public void Initialize()
@@ -69,12 +78,11 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator FillHand()
     {
-        //Add cards to deck for tests 2xCard
-        var decks = Data.ReadAllDecks();
+        //Add card to gameplay deck from player deck
         var cards = Data.ReadAllCards();
-        foreach (var id in decks[playerDeckNumber].CardsID)
+        foreach (var deckCard in CommanderCards.Cards)
         {
-            var card = cards.Single(c => c.ID == id);
+            var card = cards.Single(c => c.ID == deckCard.ID);
             deck.AddCard(card);
         }
 
@@ -139,12 +147,18 @@ public class PlayerController : MonoBehaviour
 
         if (selectedUnit == card)
         {
-            GameManager.MapController.DisableInit(this);
+            //depends on card type
+            //if(card == skill)
+            //else if(card == unit) 
+            unitsController.DisablePlaces(this);
             selectedUnit = null;
         }
         else
         {
-            GameManager.MapController.EnableInit(this);
+            //depends on card type
+            //if(card == skill)
+            //else if(card == unit) 
+            unitsController.EnablePlaces(this);
             selectedUnit = card;
         }
     }
@@ -152,7 +166,10 @@ public class PlayerController : MonoBehaviour
     {
         if (selectedUnit) selectedUnit.DisableCard();
 
-        GameManager.MapController.DisableInit(this);
+        //depends on card type
+        //if(card == skill)
+        //else if(card == unit) 
+        unitsController.DisablePlaces(this);
         selectedUnit = null;
     }
 
@@ -182,13 +199,12 @@ public class PlayerController : MonoBehaviour
 
     public void PlaceAt(Place place)
     {
-        var dropped = place.DropCard(selectedUnit, this);
-        if (dropped)
-        {
-            //Drop unit
-            units.Add(dropped);
-            GameManager.MapController.DisableInit(this);
+        //depends on card type
+        //if(card == skill)
+        //else if(card == unit) 
 
+        if (unitsController.PlaceCard(place, selectedUnit, this, units))
+        {
             //Remove card from hand
             hand.RemoveCardWithID(selectedUnit.Card.ID);
             PlayerUI.RemoveCard(selectedUnit);

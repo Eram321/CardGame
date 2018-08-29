@@ -82,6 +82,7 @@ public class TurnSystem : MonoBehaviour {
         //Take card from deck
         yield return StartCoroutine(currentPlayer.StartTurn());
 
+        GameManager.GameUI.SetWhosTurn(currentPlayer == players[0]);
         Debug.Log(currentPlayer + " :TURN");
         endTurn = false;
 
@@ -306,9 +307,46 @@ public class TurnSystem : MonoBehaviour {
         GameManager.GameUI.ResetUI();
     }
 
-    internal PlayerController GetPlayer(int v)
+    public void GameOver()
+    {
+        StopAllCoroutines();
+
+
+        if(players[1].commander.Health <= 0) { 
+
+            //Add exp to cards
+            for (int i = 0; i < Game.Instance.PlayerData.PlayerDeck.Cards.Count; i++)
+            {
+                var expAmout = UnityEngine.Random.Range(50, 150);
+                var card = Game.Instance.PlayerData.PlayerDeck.Cards[i];
+                card.Experience += expAmout;
+                Game.Instance.PlayerData.PlayerDeck.Cards[i] = card;
+            }
+
+            //Add gold
+            Game.Instance.PlayerData.Gold += UnityEngine.Random.Range(50, 150);
+        }
+
+        StartCoroutine(LoadMenuScene());
+    }
+
+    private IEnumerator LoadMenuScene()
+    {
+        yield return new WaitForSeconds(2f);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("map");
+    }
+
+    public PlayerController GetPlayer(int v)
     {
         return players[v];
+    }
+
+    void OnGUI()
+    {
+#if UNITY_EDITOR
+        if (GUI.Button(new Rect(100, 100, 100, 50), "End Game"))
+            GameOver();
+#endif
     }
 
 }

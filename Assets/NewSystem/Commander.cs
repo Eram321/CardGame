@@ -6,22 +6,27 @@ using UnityEngine.UI;
 
 public class Commander : MonoBehaviour {
 
-    [SerializeField] Text healthText;
+   // [SerializeField] Text healthText;
+    [SerializeField] Image healthFill;
 
     public float Health
     {
         get { return health; }
         set {
             health = value;
-            healthText.text = health.ToString(); ;
 
-            if (health == 0) ;//die
+            if (health <= 0)
+                GameManager.TurnSystem.GameOver();
+
+            healthFill.fillAmount = health / maxHealth;
         }
     }
-    [SerializeField] float health;
+
+    [SerializeField] float maxHealth;
+    float health;
 
     private void Start()
     {
-        Health = health;
+        Health = maxHealth;
     }
 }

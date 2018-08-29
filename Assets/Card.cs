@@ -1,19 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//public enum CardType
-//{
-//    Neutral,
-//    KingdomOfPoland
-//}
-//public enum CardRarity
-//{
-//    Common,
-//    Rare,
-//    Epic,
-//    Legendary
-//}
 public enum CardType
 {
     Infantry,
@@ -21,22 +10,9 @@ public enum CardType
     Cavalary
 }
 
-
 public struct Card {
 
-    //public Card(string id, string name, string imageName, string description, int attackPoints, int defensePoints, CardType type, CardRarity rarity)
-    //{
-    //    ID = id;
-    //    Name = name;
-    //    ImageName = imageName;
-    //    Description = description;
-    //    Type = type;
-    //    Rarity = rarity;
-    //    AttackPoints = attackPoints;
-    //    DefensePoints = defensePoints;
-    //}
-
-    public Card(int id, string name, string imageName, int attack, int defense, int range, int speed, int turns)
+    public Card(int id, string name, string imageName, int attack, int defense, int range, int speed, int turns, int[] upgrades, float expNeeded)
     {
         this.ID = id;
         this.Name = name;
@@ -46,6 +22,9 @@ public struct Card {
         this.Range = range;
         this.Speed = speed;
         this.Turns = turns;
+        this.Upgrades = new int[upgrades.Length];
+        Array.Copy(upgrades, this.Upgrades, upgrades.Length);
+        this.expNeeded = expNeeded;
     }
 
     public int ID;
@@ -56,4 +35,6 @@ public struct Card {
     public int Range;
     public int Speed;
     public int Turns;
+    public int[] Upgrades;
+    public float expNeeded;
 }

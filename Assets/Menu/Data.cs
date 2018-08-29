@@ -5,6 +5,7 @@ using UnityEngine;
 using LitJson;
 using System.Text;
 using UI;
+using System.Linq;
 
 public class Data {
 
@@ -12,8 +13,20 @@ public class Data {
     static string deckJsonFilePath = Application.dataPath + "/Resources/decks.json";
     static string animationJsonFilePath = Application.dataPath + "/Resources/unit_animation_info.json";
 
+   
+
     public delegate void CardsDataChange();
     public static event CardsDataChange onCardsDataChange;
+
+    internal static Deck ReadDeckWithID(int currentEnemyDeck)
+    {
+        return ReadAllDecks()[currentEnemyDeck];
+    }
+
+    internal static Deck ReadPlayerDeck()
+    {
+        return ReadAllDecks()[0];
+    }
 
     public static void AddNewCard(Card card)
     {
@@ -42,10 +55,26 @@ public class Data {
             var range = int.Parse(data[i]["Range"].ToString());
             var speed = int.Parse(data[i]["Speed"].ToString());
             var turns = int.Parse(data[i]["Turns"].ToString());
-            cards.Add(new Card(id,name, imageName, attack, defense, range, speed, turns));
+
+            var list = new List<int>();
+            var upgrades = data[i]["Upgrades"];
+            foreach (var upg in upgrades){
+                list.Add(int.Parse(upg.ToString()));
+            }
+
+            var exp = int.Parse(data[i]["ExpNeed"].ToString());
+
+            cards.Add(new Card(id,name, imageName, attack, defense, range, speed, turns, list.ToArray(), exp));
         }
 
         return cards;
+    }
+
+    internal static void AddNewCard()
+    {
+        Game.Instance.PlayerData.PlayerDeck.AddNewCard();
+
+        SavePlayerDeck();
     }
 
     public static List<UnitAnimationInfo> ReadUnitAnimationInfo()
@@ -80,6 +109,22 @@ public class Data {
         return info;
     }
 
+    internal static Card UpgradeCard(Card card, int upgradeNumber, int index)
+    {
+        var newCard = ReadCardWithID(card.Upgrades[upgradeNumber]);
+        Game.Instance.PlayerData.PlayerDeck.UpgradeCard(card, newCard, index);
+
+        SavePlayerDeck();
+
+        return newCard;
+    }
+
+    public static Card ReadCardWithID(int id)
+    {
+        var cards = ReadAllCards();
+        return cards.SingleOrDefault(c => c.ID == id);
+    }
+
     public static List<Deck> ReadAllDecks()
     {
         var json = File.ReadAllText(deckJsonFilePath);
@@ -88,21 +133,25 @@ public class Data {
 
         for (int i = 0; i < data.Count; i++)
         {
-            var cardsID = new List<int>();
-            var jsonCards = data[i]["CardsID"];
-            foreach (var card in jsonCards){
-                cardsID.Add(int.Parse(card.ToString()));
+            var list = new List<DeckCard>();
+            for (int j = 0; j < data[i]["Cards"].Count; j++)
+            {
+                var id = int.Parse(data[i]["Cards"][j]["ID"].ToString());
+                var exp = int.Parse(data[i]["Cards"][j]["Experience"].ToString());
+                list.Add(new DeckCard(id, exp));
             }
 
-            decks.Add(new Deck(cardsID.ToArray()));
+            decks.Add(new Deck(list));
         }
 
         return decks;
     }
 
-    public static void WriteAllDeck(List<Deck> deckList)
+    public static void SavePlayerDeck()
     {
-        var saveData = JsonMapper.ToJson(deckList);
+        var decks = ReadAllDecks();
+        decks[0] = Game.Instance.PlayerData.PlayerDeck;
+        var saveData = JsonMapper.ToJson(decks);
         File.WriteAllText(deckJsonFilePath, saveData);
     }
 }

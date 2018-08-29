@@ -10,6 +10,9 @@ public class Place : MonoBehaviour {
     public PlayerController InitLineForPlayer;
     public Unit unit;
 
+    public bool Enabled;
+    public int Position;
+
     public Unit DropCard(CardObject card, PlayerController player)
     {
         if (unit != null || InitLineForPlayer == null || player != InitLineForPlayer) return null;
@@ -26,12 +29,13 @@ public class Place : MonoBehaviour {
 
     public void Enable()
     {
-        if(unit == null)
-            GetComponent<SpriteRenderer>().color = Color.yellow;
+        GetComponent<SpriteRenderer>().color = Color.yellow;
+        Enabled = true;
     }
     public void Disable()
     {
         GetComponent<SpriteRenderer>().color = Color.white;
+        Enabled = false;
     }
 
     public IEnumerator MoveUnit(Unit unit, bool flip)

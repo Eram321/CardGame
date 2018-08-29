@@ -75,7 +75,7 @@ public class DeckPanel : MonoBehaviour {
         }
 
 
-        currentDeck.CardsID = list.ToArray();
+
 
         if (newDeck)
         {
@@ -92,7 +92,6 @@ public class DeckPanel : MonoBehaviour {
             deckList.Add(deckUC.ItemDeck);
         }
 
-         Data.WriteAllDeck(deckList);
 
         CancelButtonClick();
     }
@@ -134,12 +133,12 @@ public class DeckPanel : MonoBehaviour {
 
 
 
-        foreach (int cardID in deck.CardsID)
-        {
-            var obj = Instantiate(deckCardsPrefab, editDeckContentParent);
-            var c = obj.GetComponent<MenuDeckCardUC>();
-            c.SetCardInfo(cardID);
-        }
+        //foreach (int cardID in deck.CardsID)
+        //{
+        //    var obj = Instantiate(deckCardsPrefab, editDeckContentParent);
+        //    var c = obj.GetComponent<MenuDeckCardUC>();
+        //    c.SetCardInfo(cardID);
+        //}
 
         SetCardInDeckText();
     }

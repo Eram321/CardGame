@@ -23,5 +23,4 @@ public class CardObjectPreview : MonoBehaviour {
         range.text = card.Card.Range.ToString();
         speed.text = card.Card.Speed.ToString();
     }
-
 }

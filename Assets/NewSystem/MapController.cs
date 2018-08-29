@@ -44,10 +44,11 @@ public class MapController : MonoBehaviour {
             for (int j = 0; j < PlacesInLine; j++)
             {
                 var placeObject = Instantiate(PlacePrefab, lineHolder.transform);
-                size = placeObject.GetComponent<BoxCollider2D>().bounds.extents * 2f;
+                size = placeObject.GetComponent<PolygonCollider2D>().bounds.extents * 2f;
 
-                placeObject.transform.localPosition = new Vector3(j*size.x, 0, i);
+                placeObject.transform.localPosition = new Vector3((j + i*0.5f - i/2)*size.x, 0, i);
                 var place = placeObject.GetComponent<Place>();
+                place.Position = j;
 
                 if (j == 0)
                     PlaceForPlayer(GameManager.TurnSystem.GetPlayer(0), place);
@@ -57,28 +58,13 @@ public class MapController : MonoBehaviour {
                 line.AddPlace(place);
             }
 
-            lineHolder.transform.localPosition = new Vector3(0,i*size.y + offsetBetwenPlacesY*i*size.y);
+            lineHolder.transform.localPosition = new Vector3(0,i+i*0.05f);
         }
     }
 
     private void PlaceForPlayer(PlayerController player, Place place)
     {
         place.InitLineForPlayer = player;
-    }
-
-    public void EnableInit(PlayerController player)
-    {
-        foreach (var line in lines)
-        {
-            line.EnableInit(player);
-        }
-    }
-    public void DisableInit(PlayerController player)
-    {
-        foreach (var line in lines)
-        {
-            line.DisableInit(player);
-        }
     }
 
     public List<Line> GetLines()

@@ -1,192 +1,230 @@
-[
-  {
-    "ID": 0,
-    "Name": "Peasant",
-    "ImageName": "peasant",
-    "Attack": 1,
-    "Defense": 2,
-    "Range": 1,
-    "Speed": 2,
-    "Turns": 0
-  },
+[  
+   {  
+      "ID":0,
+      "ImageName":"peasant",
+      "Name":"Peasant",
+      "Attack":1,
+      "Defense":2,
+      "Range":1,
+      "Speed":2,
+    "Turns": 0,
+    "Upgrades": [ 1, 5 ],
+    "ExpNeed": 100
+   },
   {
     "ID": 1,
-    "Name": "Peasant Archer",
     "ImageName": "peasant_archer",
+    "Name": "Peasant Archer",
     "Attack": 2,
     "Defense": 2,
     "Range": 3,
     "Speed": 1,
-    "Turns": 0
+    "Turns": 0,
+    "Upgrades": [ 2, 7],
+    "ExpNeed": 200
   },
   {
     "ID": 2,
-    "Name": "Archer Milita",
     "ImageName": "archer_milita",
+    "Name": "Archer Milita",
     "Attack": 4,
     "Defense": 3,
     "Range": 2,
     "Speed": 2,
-    "Turns": 1
+    "Turns": 1,
+    "Upgrades": [ 3 ],
+    "ExpNeed": 300
   },
   {
     "ID": 3,
-    "Name": "Longbow Archer",
     "ImageName": "longbow_archer",
+    "Name": "Longbow Archer",
     "Attack": 6,
     "Defense": 4,
     "Range": 4,
     "Speed": 1,
-    "Turns": 2
+    "Turns": 2,
+    "Upgrades": [ 4 ],
+    "ExpNeed": 400
   },
   {
     "ID": 4,
-    "Name": "Master Archer",
     "ImageName": "master_archer",
+    "Name": "Master Archer",
     "Attack": 10,
     "Defense": 6,
     "Range": 4,
     "Speed": 2,
-    "Turns": 3
+    "Turns": 3,
+    "Upgrades": [ ],
+    "ExpNeed": 0
   },
   {
     "ID": 5,
-    "Name": "Milita",
     "ImageName": "milita",
+    "Name": "Milita",
     "Attack": 3,
     "Defense": 3,
     "Range": 1,
     "Speed": 2,
-    "Turns": 0
+    "Turns": 0,
+    "Upgrades": [ 6 ],
+    "ExpNeed": 200
   },
   {
     "ID": 6,
-    "Name": "Page",
     "ImageName": "page",
+    "Name": "Page",
     "Attack": 5,
     "Defense": 5,
     "Range": 1,
     "Speed": 2,
-    "Turns": 1
+    "Turns": 1,
+    "Upgrades": [ 8, 10],
+    "ExpNeed": 300
   },
   {
     "ID": 7,
-    "Name": "Sergant",
     "ImageName": "sergant",
+    "Name": "Sergant",
     "Attack": 4,
     "Defense": 6,
     "Range": 1,
     "Speed": 1,
-    "Turns": 1
+    "Turns": 1,
+    "Upgrades": [ 9 ],
+    "ExpNeed": 300
   },
   {
     "ID": 8,
-    "Name": "Spearman",
     "ImageName": "spearman",
+    "Name": "Spearman",
     "Attack": 5,
     "Defense": 8,
     "Range": 2,
     "Speed": 1,
-    "Turns": 2
+    "Turns": 2,
+    "Upgrades": [  ],
+    "ExpNeed": 0
   },
   {
     "ID": 9,
-    "Name": "Pikeman",
     "ImageName": "pikeman",
+    "Name": "Pikeman",
     "Attack": 7,
     "Defense": 5,
     "Range": 3,
     "Speed": 1,
-    "Turns": 3
+    "Turns": 3,
+    "Upgrades": [ ],
+    "ExpNeed": 0
   },
   {
     "ID": 10,
-    "Name": "Maceman",
     "ImageName": "maceman",
+    "Name": "Maceman",
     "Attack": 5,
     "Defense": 5,
     "Range": 1,
     "Speed": 3,
-    "Turns": 2
+    "Turns": 2,
+    "Upgrades": [ 11 ],
+    "ExpNeed": 400
   },
   {
     "ID": 11,
-    "Name": "Knight",
     "ImageName": "knight",
+    "Name": "Knight",
     "Attack": 8,
     "Defense": 8,
     "Range": 1,
     "Speed": 2,
-    "Turns": 3
+    "Turns": 3,
+    "Upgrades": [ 12 ],
+    "ExpNeed": 500
   },
   {
     "ID": 12,
-    "Name": "Dragon Knight",
     "ImageName": "dragon_knight",
+    "Name": "Dragon Knight",
     "Attack": 12,
     "Defense": 12,
     "Range": 3,
     "Speed": 1,
-    "Turns": 5
+    "Turns": 5,
+    "Upgrades": [ ],
+    "ExpNeed": 0
   },
   {
     "ID": 13,
-    "Name": "Pure Bandit",
     "ImageName": "bandit_melee_low",
+    "Name": "Pure Bandit",
     "Attack": 1,
     "Defense": 2,
     "Range": 1,
     "Speed": 2,
-    "Turns": 0
+    "Turns": 0,
+    "Upgrades": [ ],
+    "ExpNeed": 1000
   },
   {
     "ID": 14,
-    "Name": "Bandit",
     "ImageName": "bandit_melee_mid",
+    "Name": "Bandit",
     "Attack": 5,
     "Defense": 5,
     "Range": 1,
     "Speed": 2,
-    "Turns": 1
+    "Turns": 1,
+    "Upgrades": [ ],
+    "ExpNeed": 1000
   },
   {
     "ID": 15,
-    "Name": "Strong Bandit",
     "ImageName": "bandit_melee_strong",
+    "Name": "Strong Bandit",
     "Attack": 7,
     "Defense": 7,
     "Range": 2,
     "Speed": 1,
-    "Turns": 2
+    "Turns": 2,
+    "Upgrades": [ ],
+    "ExpNeed": 1000
   },
   {
     "ID": 16,
-    "Name": "Bandit Pure Archer",
     "ImageName": "bandit_dist_low",
+    "Name": "Bandit Pure Archer",
     "Attack": 2,
     "Defense": 2,
     "Range": 3,
     "Speed": 2,
-    "Turns": 0
+    "Turns": 0,
+    "Upgrades": [ ],
+    "ExpNeed": 1000
   },
   {
     "ID": 17,
-    "Name": "Bandit Archer",
     "ImageName": "bandit_dist_mid",
+    "Name": "Bandit Archer",
     "Attack": 4,
     "Defense": 2,
     "Range": 3,
     "Speed": 1,
-    "Turns": 1
+    "Turns": 1,
+    "Upgrades": [ ],
+    "ExpNeed": 1000
   },
   {
     "ID": 18,
-    "Name": "Bandit Master Archer",
     "ImageName": "bandit_dist_strong",
+    "Name": "Bandit Master Archer",
     "Attack": 6,
     "Defense": 4,
     "Range": 4,
     "Speed": 1,
-    "Turns": 2
+    "Turns": 2,
+    "Upgrades": [ ],
+    "ExpNeed": 1000
   }
 ]

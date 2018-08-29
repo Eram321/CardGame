@@ -8,6 +8,7 @@ public class GameUI : MonoBehaviour {
 
     [SerializeField] CardObjectPreview cardPreviewPanel;
     [SerializeField] Text turnTimeText;
+    [SerializeField] Text whosTurnText;
 
     void Awake()
     {
@@ -47,5 +48,19 @@ public class GameUI : MonoBehaviour {
     public void SetTurnTime(float value)
     {
         turnTimeText.text = value.ToString();
+    }
+
+    public void SetWhosTurn(bool player)
+    {
+        if (player)
+        {
+            whosTurnText.text = "Your Turn";
+            whosTurnText.color = Color.green;
+        }
+        else
+        {
+            whosTurnText.text = "Enemy Turn";
+            whosTurnText.color = Color.red;
+        }
     }
 }

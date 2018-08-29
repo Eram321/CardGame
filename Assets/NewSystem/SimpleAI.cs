@@ -9,13 +9,17 @@ public class SimpleAI : MonoBehaviour {
     private void OnDestroy(){
         playerController.OnStartTurn -= StartTurn;
     }
-	void OnEnable () {
+
+    private void OnEnable()
+    {
         playerController = GetComponent<PlayerController>();
         playerController.OnStartTurn += StartTurn;
     }
 
     private void StartTurn()
     {
+        playerController.CommanderCards = Data.ReadDeckWithID(Game.Instance.CurrentEnemyDeck);
+
         StartCoroutine(AI());
     }
 
