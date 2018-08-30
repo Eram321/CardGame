@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class ColliderDelegate : MonoBehaviour {
 
-    public delegate void PlayerEnter();
-    public event PlayerEnter OnPlayerEnter;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        var player = collision.GetComponent<PlayerOnMapController>();
-        if (player)
-            OnPlayerEnter();
+        IDelegateReciver reciver = (IDelegateReciver)other.GetComponent(typeof(IDelegateReciver));
+        if (reciver != null)
+            reciver.OnRecive();
     }
 }

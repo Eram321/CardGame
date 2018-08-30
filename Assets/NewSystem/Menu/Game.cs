@@ -32,7 +32,7 @@ public class Game : MonoBehaviour {
 [Serializable]
 public struct PlayerData
 {
-    public int DeckSize;
+    public int MaxDeckSize;
     public float Experience;
     public float Gold;
     public UI.Deck PlayerDeck;
@@ -40,7 +40,7 @@ public struct PlayerData
 
     public PlayerData(float exp, float gold, UI.Deck deck, Vector3 positionOnMap, int deckSize)
     {
-        DeckSize = deckSize;
+        MaxDeckSize = deckSize;
         Experience = exp;
         Gold = gold;
         PlayerDeck = deck;

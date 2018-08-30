@@ -3,21 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Town : InteractableObject
+public class Town : InteractableObject, IDelegateReciver
 {
-    [SerializeField] ColliderDelegate deleage;
-
-    private void OnEnable()
+    public enum TownOptions
     {
-        deleage.OnPlayerEnter += InteractWithPlayer;
+        FightEasy,
+        FightMedium,
+        FightHard,
+        Recruit,
+        Ruins
     }
-    private void OnDestroy()
-    {
-        deleage.OnPlayerEnter -= InteractWithPlayer;
-    }
+    [SerializeField] List<TownOptions> options;
 
-    private void InteractWithPlayer()
+    public void OnRecive()
     {
+        Menu.Instance.townWindow.SetWindow(options);
         Menu.Instance.OpenWindow(typeof(TownWindow));
     }
 }

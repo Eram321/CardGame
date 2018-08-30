@@ -9,6 +9,13 @@ namespace UI {
 
         public List<DeckCard> Cards = new List<DeckCard>();
 
+        public int Size
+        {
+            get {
+                return Cards.Count;
+            }
+        }
+
         public Deck(List<DeckCard> cards)
         {
             foreach (var c in cards)

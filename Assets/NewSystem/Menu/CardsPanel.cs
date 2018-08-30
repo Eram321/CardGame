@@ -56,7 +56,7 @@ public class CardsPanel : Window {
         {
             Game.Instance.PlayerData.Gold -= recruitCost;
             Data.AddNewCard();
-            Menu.Instance.PlayerDataUI.UpdateGoldText();
+            Menu.Instance.topPanel.UpdateGoldText();
             InstantiateNewCard(Data.ReadCardWithID(0));
         }
     }

@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour {
 
     public static Menu Instance { get; private set; }
 
-    public PlayerDataUI PlayerDataUI;
+    public TopPanel topPanel;
     public CardsPanel cardsPanel;
     public TutorialWindow tutorialWindow;
     public TownWindow townWindow;
@@ -51,8 +51,8 @@ public class Menu : MonoBehaviour {
 
     private void Start()
     {
-        if (!Game.Instance.States.TutorialCompleted) 
-            OpenWindow(typeof(TutorialWindow));
+        //if (!Game.Instance.States.TutorialCompleted) 
+        //    OpenWindow(typeof(TutorialWindow));
     }
     private void Awake()
     {
